@@ -173,6 +173,82 @@ $("#btn0regis").on("click", function() {
 })
 
 // $(function() {
+//   $(document).on("click", ".img0btn", function () {
+
+//     document.getElementById("img0show").src = $(this).data("fname");
+
+//     data0id = $(this).data("id");
+//     $("#needs0table").hide();
+//     $("#my1needs").hide();
+//     $("#img0select").show();
+//     $("#img0preview").show();
+//     // $("#post0needs").hide();
+//     // $("#needs0text").hide();
+
+//     document.getElementById("img0input").addEventListener("change", function() {
+//       // $("#my3needs").hide();
+//       // $("#post0needs").show();
+//       // $("#needs0text").show();
+//       let reader = new FileReader();
+//       reader.onload = function(event) {
+//         document.getElementById("img0show").src = reader.result;
+//       }
+//       let file = document.getElementById("img0input").files[0];
+//       reader.readAsDataURL(file);
+//     });
+//   });
+// })
+
+// $("#post0img").on("click", function() {
+//   let form = document.createElement("form");
+//   let request1 = document.getElementById("img0input");
+//   let request5 = document.createElement("input");
+//   let request6 = document.createElement("input");
+
+//   form.method = "POST";
+//   form.action = "https://auneeds.com/needs0img.php";
+//   form.enctype = "multipart/form-data";
+//   request5.type = "hidden";
+//   request5.name = "userhash";
+//   request5.value = user0hash;
+//   request6.type = "hidden";
+//   request6.name = "dataid";
+//   request6.value = data0id;  
+  
+//   form.appendChild(request1);
+//   form.appendChild(request5);
+//   form.appendChild(request6);
+
+//   document.body.appendChild(form);
+
+//   form.submit();
+// })
+
+// $("#img0show").on("click", function() {
+//   $("#img0display").html($(this).prop('outerHTML'));
+//   $("#img0display").show();
+//   $("#img0show").css("max-height", "500px");
+// })
+
+// $("#img0display").on("click", function() {
+//   $("#img0display").empty();
+//   $("#img0display").hide();
+//   $("#img0show").css("max-height", "145px");
+// })
+
+// $("#ourimg0show").on("click", function() {
+//   $("#ourimg0display").html($(this).prop('outerHTML'));
+//   $("#ourimg0display").show();
+//   $("#ourimg0show").css("max-height", "500px");
+// })
+
+// $("#ourimg0display").on("click", function() {
+//   $("#ourimg0display").empty();
+//   $("#ourimg0display").hide();
+//   $("#ourimg0show").css("max-height", "145px");
+// })
+
+// $(function() {
 //   $(window).scroll(function () {
 //     $('.effect-fade').each(function() {
 //       var elemPos = $(this).offset().top;
