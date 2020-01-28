@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>プロンタイプ</title>
+  <meta charset="utf-8">
+  <meta name="description" content="プロンタイプ Prontype">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="favicon.ico">
+  
+  <meta name="theme-color" content="#d60093">
+  <link rel="manifest" href="./manifest.json">
+  <script>
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js');
+  }
+  </script>
+  
+<style>
+  .gm-style img[src="img/apple-touch-icon.png"] {border-radius:50% !important;}
+  .gm-style img[src="img/auneeds-biz.png"] {border-radius:50% !important;}
+  .gm-style img[src="img/auneeds-white-s.png"] {border-radius:50% !important;}
+  body {font-family: "verdana", "Meiryo UI", "arial unicode ms"}
+  td, th {padding: 5px 5px; vertical-align: middle; border: solid 1px #bfbfbf; text-align: center;}
+
+  .chat-hukidashi {
+  position: relative;
+  float: right;
+  /* display: inline-block; */
+  padding: 3px 12px 3px 12px;
+  margin-top: 15px;
+  margin-bottom: 0px;
+  margin-left: 150px;
+  margin-right: 15px;
+  max-width: 200px;
+  border-radius: 10px;
+  background-color: #4986E8; 
+  color: white;
+  word-wrap: break-word;
+}
+/* DONE */
+.chat-hukidashi:after {
+  content: "";
+  position: absolute;
+  bottom: -3px; 
+  right: -14px;
+  border: 8px solid transparent;
+  border-left: 18px solid #4986E8;
+  -webkit-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+/* DONE */
+p{
+  word-wrap: break-word;
+}
+/* DONE */
+.someone {
+  float: left;
+  margin-right: 150px;
+  margin-left: 15px;
+  background-color: #d60093;
+}
+/* DONE */
+.someone:after {
+  border: 0;
+  /* border: 8px solid transparent;
+  border-right: 18px solid #d60093; */
+}
+/* DONE */
+.someone:before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -14px;
+  border: 8px solid transparent;
+  border-right: 18px solid #d60093;
+  -webkit-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+/* DONE */
+#send:hover {
+  color: royalblue; 
+  opacity: 0.5;
+  cursor: pointer;
+}
+</style>
+
+</head>
+<body style="margin: 0;">
+
+<!-- <?include("p0news.php");?> -->
+  
+<div style="width: 95%; max-width: 375px; margin: 0 auto; color: #4986E8; font-size: 12px;">
+
+<header>
+  <div id="menu0bar" style="position: fixed; top:0px; right:0px; 
+  width: 40px; height: 18px; border-radius: 0%; padding-top: 12px;
+  background-color: transparent; color: navy; font-size: 40px; 
+  text-decoration: none; text-align: center; line-height: 0;
+  cursor: pointer;
+  ">≡</div>
+  <div id="menu0bx" style="position: fixed; left: 0; right: 0; width: calc(100%-10px); max-width: 375px; height: 200px; background-color: #d60093; color: white; font-size: 12px; opacity: 90%; z-index: 10; text-align: left; padding: 5px 15px; overflow: scroll; overflow-x: hidden; overflow-y: scroll; margin: 0 auto; display: none;">
+
+        <div id="cls0menu" style="position: absolute; top: 3px; right: 14px; font-size: 16px">✖︎</div>
+        <a href="concept.html" style="text-decoration: none; color: white;"><h1 style="font-size: 14px; margin-top: 30px; margin-bottom: 0px;">- コンセプト</h1></a>
+        <h1 id="to0news" style="font-size: 14px; cursor: pointer; margin-top: 10px; margin-bottom: 0px;">- 最新情報</h1>
+        <a href="https://twitter.com/auneeds1" style="text-decoration: none; color: white;"><h1 style="font-size: 14px; margin-top: 10px; margin-bottom: 0px;">- Twitter</h1></a>
+        <a href="demo.html" style="text-decoration: none; color: white;"><h1 style="font-size: 14px; margin-top: 10px; margin-bottom: 0px;">- 使い方デモ</h1></a>
+        <a href="flogin.html" style="text-decoration: none; color: white;"><h1 style="font-size: 14px; margin-top: 10px; margin-bottom: 0px;">- ログイン</h1></a>
+  </div>
+</header>
+
+    <!-- FIrebaseUI CSS -->
+    <!-- <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" /> -->
+    <!-- /FIrebaseUI CSS -->
+
+    <!-- 認証に必要な要素 -->
+    <!-- <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div> -->
+    <!-- /認証に必要な要素 -->
+
+<div id="reload0page" style="float: left; margin-top: 2px; margin-left: 0; color: navy; cursor: pointer; transform: scale(1.0);">ページ更新</div>
+
+<div style="width: 50px; height: 50px; margin: 0 auto; margin-top: 0px;">
+  <img src="img/auneeds-white-s.png" alt="AuNeeds" style="width: 100%; height: 50px; object-fit: cover;">
+</div>
+
+<form name="bizlogin" action="biz0login.php" method="post">
+
+<div style=" text-align: center; position: relative;">
+<!-- display: none; -->
+  <input type="text" name="username" id="xxx" placeholder="メールアドレス" style="width: 65%; height: 20px; margin: 0 auto; margin-top: 0px; padding-left: 5px; background-color: white; border: 1px solid #4986E8; border-radius: 5px; color: #222222;">
+  <div style="position: absolute; top: 3px; right: 10px; display: none;"><input type="checkbox" id="unck" checked style="vertical-align: sub;"><label for="unck">保存</label></div>
+</div>
+
+<div  style="text-align: center; position: relative;">
+<!-- display: none; -->
+  <input type="password" name="pw" id="xxx1" placeholder="パスワード" style="width: 65%; height: 20px; margin: 0 auto; margin-top: 10px; padding-left: 5px; background-color: white; border: 1px solid #4986E8; border-radius: 5px; color: #222222;">
+  <div style="position: absolute; top: 13px; right: 10px; display: none;"><input type="checkbox" id="pwck" checked style="vertical-align: sub;"><label for="pwck">保存</label></div>
+</div>
+
+<div style="width: 220px; height: 35px; margin: 0 auto; margin-top: 10px; background: white; border-radius: 5px; display: flex; justify-content: space-around;">
+<!-- display: none; -->
+
+  <div style="width: 100px; height: 35px; margin: 0 auto; margin-top: 0px; background: #d60093; border-radius: 5px;">
+    <input type="button" value="ビジネス登録" onclick="location.href='./biz0signup.php'" style="width: 100%; height: 35px; background: transparent; color: white; border-radius: 5px; cursor: pointer;">
+  </div>
+  <div style="width: 100px; height: 35px; margin: 0 auto; margin-top: 0px; background: navy; border-radius: 5px;">
+    <input type="submit" value="サインイン"  onClick="return check0login();" style="width: 100%; height: 35px; background: transparent; color: white; border-radius: 5px; cursor: pointer;">
+  </div>
+</div>
+
+</form>
+
+<div style="width: 105px; height: 30px; margin: 0 auto; margin-top: 10px; background: white; border-radius: 5px; display: flex; justify-content: center; border: 1px solid silver; cursor: pointer;">
+  <a href="flogin.html" style="text-decoration: none;">
+  <img src="./img/gmail.png" alt="gmail" style="width: 30px; height: 30px;">
+  <img src="./img/email.png" alt="email" style="width: 30px; height: 30px;">
+  <img src="./img/phone.png" alt="phone" style="width: 30px; height: 30px;">
+  </a>
+</div>
+
+<div style="position: relative; width: 100%; height: 5px;">
+  <div style="position: absolute; top: -7px; right: 0px; color: blueviolet;">半径1km</div>
+</div>
+
+<div id="map0target" alt="img/auneeds-white-s.png" style="position: relative; width:100%; height:290px; margin:0 auto; margin-top: 5px; border-radius: 5px;">
+  <!-- <img src="img/mapalt.png" alt="AuNeeds" style="width: 100%; height: 100%; object-fit: cover;"> -->
+  <div style="text-align: center; padding-top: 120px;">位置情報が必要です...ページを更新するか<br>位置情報の設定をご確認ください</div>
+</div>
+
+<button id="back" style="float: right; width: 40px; height: 30px; margin-top: 5px; color: white; background-color: navy; font-size: 16px; border-radius: 5px; font-size: 14px; cursor: pointer;">↩︎</button>
+
+
+<div style="margin-top: 5px;">
+  <em style="color: blueviolet; font-style: normal;">Click Map!</em> 緯度: <span id="lat"></span> 経度: <span id="lng"></span>
+</div>
+
+<select class="in0box" id="mins0after" size="1" dir="rtl" style="color: #4986E8; font-size: 12px; margin-left: -1px; cursor: pointer;">
+  <option>直近測定値</option>
+  <option>10分後予測</option> 
+  <option>20分後予測</option>
+  <option>30分後予測</option>
+  <option>40分後予測</option>
+  <option >50分後予測</option>
+  <option selected>60分後予測</option>
+</select> 降水量: <span id="rain0vol">−</span>
+<button id="show0all" style="background: silver; color: white; border-radius: 5px; font-weight: bold; cursor: pointer;">＋</button>
+<button id="save" style="background: silver; color: #ffd61a; border-radius: 5px; font-weight: bold; cursor: pointer;">地点保存</button>
+
+<div id="rain0falls">
+  <div id="date" style="width: 95%; margin: 0; text-align: right;"></div>
+  <table style="margin: 0 auto; margin-top: 2px; height: auto; width: 95%; border-collapse: collapse; background: white;">
+    <tr><th>何分後</th><td>00</td><td>10</td><td>20</td><td>30</td><td>40</td><td>50</td><td>60</td></tr>
+    <tr><th>降水量</th><td id="rain0"></td><td id="rain1"></td><td id="rain2"></td><td id="rain3"></td><td id="rain4"></td><td id="rain5"></td><td id="rain6"></td></tr>
+  </table>
+</div>
+
+<div id="click0spots" style="position: relative; height: 180px; width: 98%; margin: 0 auto; margin-top: 10px; border: medium solid cornflowerblue; border-radius: 5px;">
+<div style="position: absolute; top: 0px; width: 100%; margin: 0 auto; height: 25px; background: #4986E8;"></div> 
+<div style="position: absolute; top: 3px; left: 5px; color: white;">保存地点リスト</div>
+  <table id="list" style="position: absolute; display: block; top: 15px; height: 150px; width: 100%; margin-top: 10px; overflow: scroll; overflow-x: hidden; overflow-y: scroll;">
+  </table>
+  <button id="close0spots" style="position: absolute; top: 0px; right: 0px; color: white; background-color: #4986E8; border: 0; cursor: pointer; font-size: 16px; font-weight: bold;">−</button>
+  <button id="open0spots" style="position: absolute; top: 0px; right: 0px; color: white; background-color: #4986E8; border: 0; cursor: pointer; font-size: 16px; font-weight: bold; display: none;">+</button>
+</div>
+
+<div id="tenki0now" style="position: relative; height: 180px; width: 98%; margin: 0 auto; margin-top: 10px; border: medium solid cornflowerblue; border-radius: 5px;">
+<!-- display: none -->
+  <div style="position: absolute; top: 0px; width: 100%; margin: 0 auto; height: 25px; background: #4986E8;"></div> 
+  <div style="position: absolute; top: 3px; left: 5px; color: white;">Guest User</div>
+  <!-- <button id="close0tenki0now" style="position: absolute; top: 0px; right: 0px; color: white; background-color: #4986E8; border: 0; cursor: pointer; font-size: 16px">✖︎</button> -->
+  
+  <button id="other0comment" style="position: absolute; bottom: 5px; right: 25px; height: 25px; padding-top: 0px; border-radius: 5px; color: #4986E8; margin: 0 auto; display: none;">
+    <a href="comment.html" target="-_blank" style="cursor: pointer; text-decoration: none;">コメント⇨</a></button>
+    <!-- <input id="tenki0text" style="position: absolute; bottom: 5px; right: 5px; width: 275px; height: 30px; padding: 0; border: 2px solid gray; border-radius: 5px; font-size: 14px;">
+    </input> -->
+    <select id="tenki0text" style="position: absolute; bottom: 5px; right: 5px; width: 275px; height: 30px; padding: 0; border: 2px solid gray; border-radius: 5px; font-size: 14px;" size="1">
+      <option selected>混雑</option>
+      <option>てんき</option> 
+      <option>風</option>
+      <option>コンディション</option>
+    </select>
+  
+  <div id="output" style="position: absolute; top: 30px; height: 100px; width: 100%; margin-top: 10px; overflow: auto; overflow-x: hidden;">
+    <div style="position: relative">
+      <!-- <div class="chat-hukidashi">てんきnow?
+        <div id="send0ts" style="position: absolute; top: -14px; right: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">date</div>
+      </div> -->
+      <!-- <div class="chat-hukidashi someone">晴れ
+        <div style="position: absolute; top: -14px; left: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">date</div>
+      <div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;">username</div></div> -->
+    </div>  
+  </div>
+</div>
+
+<div id="my0needs" style="position: relative; height: 180px; width: 98%; margin: 0 auto; margin-top: 10px; border: medium solid #d60093; border-radius: 5px;">
+  <div style="position: absolute; top: 0px; width: 100%; margin: 0 auto; height: 25px; background: #d60093;"></div> 
+  <div style="position: absolute; top: 3px; left: 5px; color: white;">みんなのニーズ</div>
+  <div id="needs0list" style="">
+    <table id="needs0table" style="position: absolute; display: block; top: 15px; height: 150px; width: 100%; margin-top: 10px; overflow: scroll; overflow-x: hidden; overflow-y: scroll;">
+    </table>
+  </div>
+  <button id="close0myneeds" style="position: absolute; top: 0px; right: 0px; color: white; background-color: #d60093; border: 0; cursor: pointer; font-size: 16px; font-weight: bold;">−</button>
+  <button id="open0myneeds" style="position: absolute; top: 0px; right: 0px; color: white; background-color: #d60093; border: 0; cursor: pointer; font-size: 16px; font-weight: bold; display: none;">+</button>
+</div>
+
+<div class="modal js-modal" style="
+padding: 5px 15px;
+position: fixed; top: 170; left: 0; right: 0; width: calc(100%-10px); max-width: 400px; height: 210px; background-color: forestgreen; color: white; font-size: 12px; opacity: 90%; z-index: 10; text-align: center; padding: 5px 15px; overflow: scroll; overflow-x: hidden; overflow-y: scroll; margin: 0 auto;
+    background-color: forestgreen;
+    opacity: 90%;
+    position: fixed;
+    top: 220px;
+    right: 0px;
+    margin: 0 auto;
+    width: calc(100%-10px);
+    color: white;
+    width: calc(100%-10px); max-width: 400px;
+    text-align: center;
+    display: none;    
+">
+
+    <h1 style="font-size: 15px;">ログインが必要です...</h1>
+    <h2 style="text-align: center; font-size: 12px; margin-bottom: 0px; margin-left: 15px; margin-right: 0px; margin-top: 15px;">あうニーズを一緒につくっていきませんか。</h2>
+    <p style="text-align: left; font-size: 10px; margin-top: 15px; margin-bottom: 0; margin-left: 40px; margin-right: 0px;">
+        １．ユーザーは気軽に自分のニーズを投稿できる<br>
+        ２．新規登録で３回権利が付与される<br>
+        ３．さらにマッチングしてくれるUserがいれば行使できる<br>
+        ４．そして今度は誰かのニーズに役に立ち権利をゲット<br>
+        ５．もちろん完全無料、むしろ金銭のやりとりは一切禁止
+    </p>
+    <h2 style="text-align: center; font-size: 12px; margin-bottom: 0px; margin-left: 15px; margin-right: 0px; margin-top: 15px;">
+      さあ、ニーズにあうPlatformを<span><a href="flogin.html" style="text-decoration: underline; color: #d60093; cursor: pointer;">つくろう</a></span>！</h2>
+
+  <div class="modal__bg js-modal-close"></div>
+  <div class="modal__content" >
+      
+      <div class="js-modal-close" href="" style="    position: fixed;
+      right: 14px;
+      top: 412px;
+      text-decoration: none;
+      color: white;
+      font-size: 16px">✖︎</div>
+  </div>
+</div>
+
+<div id="option0now" style="
+padding: 5px 15px;
+position: fixed; top: 200; left: 0; right: 0; width: calc(100%-10px); max-width: 400px; height: 200px; background-color: forestgreen; color: white; font-size: 12px; z-index: 10; text-align: center; padding: 0px 15px; overflow: scroll; overflow-x: hidden; overflow-y: scroll; margin: 0 auto;
+    background-color: forestgreen;
+    opacity: 98%;
+    position: fixed;
+    top: 300px;
+    right: 0px;
+    margin: 0 auto;
+    width: calc(100%-10px);
+    color: white;
+    width: calc(100%-10px); max-width: 400px;
+    text-align: center;
+    display: none;
+">
+    
+  <div style="display: flex; justify-content: space-around; align-items: center; width: 300px; height: 200px; margin: 0 auto;">
+  <button id="option0sora" style="height: 40px; background: silver; color: #4986E8; border-radius: 5px; font-weight: bold; cursor: pointer;">てんき</button>
+  <button id="option0wind" style="height: 40px; background: silver; color: #4986E8; border-radius: 5px; font-weight: bold; cursor: pointer;">風</button>
+  <button id="option0condi" style="height: 40px; background: silver; color: #4986E8; border-radius: 5px; font-weight: bold; cursor: pointer;">コンディション</button>
+  <button id="option0busy" style="height: 40px; background: silver; color: #4986E8; border-radius: 5px; font-weight: bold; cursor: pointer;">混雑状況</button>
+  </div>
+  <div class="js-modal-close" href="" style="    position: fixed;
+  right: 14px;
+  top: 305px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px">✖︎</div>
+</div>
+
+<a href="#" style="position: fixed; bottom:7px; right: 7px; 
+width: 40px; height: 35px; border-radius: 50%; padding-top: 5px;
+background-color: navy; color: #ffffff; font-size: 40px; 
+text-decoration: none; text-align: center; line-height: 1;
+cursor: pointer;">^</a>
+
+<footer style="width: 100%; background: #707070; color: white; text-align: center; font-size: 14px; padding: 20px 0; margin-top: 20px; margin-bottom: 20px;">
+  &copy; AuNeeds All RIghts Reserved.
+</footer>
+<?include("count.php");?>
+
+<!-- ---------------------------------------------------------------------------------------------------- -->
+<!-- JQuery/sha256 -->
+<!-- ---------------------------------------------------------------------------------------------------- -->
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/sha256.js"></script>
+
+<!-- ---------------------------------------------------------------------------------------------------- -->
+<!-- Firebase settings -->
+<!-- ---------------------------------------------------------------------------------------------------- -->
+<!-- core Firebase JS SDK is always required and must be listed first -->
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css"/>
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase.js"></script>
+<!-- Auth -->
+<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.2.0/firebase-ui-auth.css"/>
+<script src="https://www.gstatic.com/firebasejs/ui/4.2.0/firebase-ui-auth__ja.js"></script>
+
+<!-- ---------------------------------------------------------------------------------------------------- -->
+<!-- Map -->
+<!-- ---------------------------------------------------------------------------------------------------- -->
+<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyC13ssFvsDScsBKj54h15DULKp9_POTKY4&callback=init0map" async defer></script>
+
+<!-- ---------------------------------------------------------------------------------------------------- -->
+<!-- main.js -->
+<!-- ---------------------------------------------------------------------------------------------------- -->
+<script>
+"use strict";
+// ----------------------------------------------------------------------------------------------------
+// 定数変数
+// ----------------------------------------------------------------------------------------------------
+const geo0obj = window.navigator.geolocation;
+const map0html = document.getElementById("map0target");
+const map0zoom = 14;
+// ----------------------------------------------------------------------------------------------------
+let g0map = {};
+let lat0lng = {};
+let guest0latlng = {};
+let lng0lat = {};
+let save0latlng = {};
+let click0marker = {};
+let map0marker = {};
+let map0circle = {};
+let times0watch = 0;
+let data0ts = "";
+let users0geo = {};
+// db--------------------------------------------------------------------------------------------------
+let user0rooms = [];
+let user0positions = [];
+let user0names = [];
+let user0markers = [];
+let user0contents = [];
+let iws = [];
+
+// ----------------------------------------------------------------------------------------------------
+// ログインcheck
+// ----------------------------------------------------------------------------------------------------
+function check0login() {
+  if(document.bizlogin.username.value == "" || document.bizlogin.pw.value == "") {
+    alert("ログイン情報をご入力下さい。");
+    return false;
+  }
+}
+// ----------------------------------------------------------------------------------------------------
+// イベント処理
+// ----------------------------------------------------------------------------------------------------
+
+$(document).ready(function() { 
+  init0map(); 
+});
+// ----------------------------------------------------------------------------------------------------
+// 保存地点リストテーブル
+// ----------------------------------------------------------------------------------------------------
+$("#close0spots").on("click", function() {
+  $("#click0spots").css("height", "24px");
+  $("#list").hide();
+  $("#close0spots").hide();
+  $("#open0spots").show();
+})
+$("#open0spots").on("click", function() {
+  $("#click0spots").css("height", "180px");
+  $("#list").show();
+  $("#close0spots").show();
+  $("#open0spots").hide();
+})
+
+// ----------------------------------------------------------------------------------------------------
+// リロードボタン
+$("#reload0page").on("click", function() {
+//   window.location.href ="concept.html";
+  window.location.href ="index.php";
+  // function relo() {window.location.href ="main.php";}
+  // setTimeout(relo, 2000);
+})
+
+// ----------------------------------------------------------------------------------------------------
+// みんなのニーズ
+$("#close0myneeds").on("click", function() {
+  $("#my0needs").css("height", "24px");
+  $("#needs0list").hide();
+  $("#close0myneeds").hide();
+  $("#open0myneeds").show();
+  $("#needs0table").hide();
+})
+$("#open0myneeds").on("click", function() {
+  $("#my0needs").css("height", "180px");
+  $("#needs0list").show();
+  $("#close0myneeds").show();
+  $("#open0myneeds").hide();
+  $("#needs0table").show();
+})
+
+// Close modal-----------------------------------------------------------------------------------------
+$('.js-modal-close').on('click',function() {
+  $('.js-modal').fadeOut();
+  $('#option0now').fadeOut();
+});
+
+// ----------------------------------------------------------------------------------------------------
+// needs click
+// ----------------------------------------------------------------------------------------------------
+$(function() {
+  $(document).on("click", ".our0needs", function() {
+    $('.js-modal').toggle();
+    console.log("hello");
+  });
+})
+
+// Menu------------------------------------------------------------------------------------------------
+$("#menu0bar").on("click", function() {
+  $("#menu0bx").show();
+})
+
+$("#cls0menu").on("click", function() {
+  $("#menu0bx").hide();
+})
+
+$("#to0news").on("click", function() {
+  $("#news0bx").show();
+  $("#menu0bx").hide();
+})
+
+// News----------------------------------------------------------------------------最新情報自動イベント
+$('#news0bx').fadeIn(3000, function () {
+  $(this).delay(8000).fadeOut(3000);
+});
+
+// News--------------------------------------------------------------------------最新情報を閉じるボタン
+$("#cls0news").on("click", function() {
+  $("#news0bx").hide();
+})
+
+// Rain Vol--------------------------------------------------------------------降水量テーブル展開ボタン
+$("#show0all").on("click", function() {
+  $("#rain0falls").toggle();
+})
+
+// tenki-------------------------------------------------------------------てんきダイアログ閉じるボタン
+$("#close0tenki0now").on("click", function() {
+  $("#tenki0now").fadeOut();
+  $("#click0spots").fadeIn();
+  $("#output").empty();
+})
+
+// ----------------------------------------------------------------------------------------------------
+// 日付関数
+// ----------------------------------------------------------------------------------------------------
+function ymd() {
+    let d = new Date();
+    return `${(d.getMonth()+1).toString().padStart(2, '0')}/${d.getDate().toString().padStart(2, '0')} ${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}`.replace(/\n|\r/g, '');
+}
+
+function ymds() {
+    let d = new Date();
+    return `${d.getFullYear().toString().padStart(4, '0')}${(d.getMonth()+1).toString().padStart(2, '0')}${d.getDate().toString().padStart(2, '0')} ${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}:${d.getSeconds().toString().padStart(2, '0')}`.replace(/\n|\r/g, '');
+  }
+
+//-----------------------------------------------------------------------------------------------------
+// Y!天気
+//-----------------------------------------------------------------------------------------------------
+function y0rainfalls(lnglat) {
+  const app0id = "dj00aiZpPUNianhkWkh4YjZuUiZzPWNvbnN1bWVyc2VjcmV0Jng9ZGU-";
+  const api0url = "https://map.yahooapis.jp/weather/V1/place?callback=?&coordinates=";
+  const rain0falls = [];
+  let info0ts = "";
+  let selected0mins = "";
+    
+  $.getJSON( api0url + lnglat +"&output=jsonp&appid="+ app0id, function(d) {
+    // console.dir(d); 
+    info0ts = d.Feature[0].Property.WeatherList.Weather[0].Date;
+
+    for(let i = 0; i < 7; i++) {
+      rain0falls[i] = Math.ceil(d.Feature[0].Property.WeatherList.Weather[i].Rainfall)
+    }
+    // console.log(rain0falls);
+
+    $("#date").html("現在：" + info0ts.substring(4, 6) + "/" + info0ts.substring(6, 8) + " " + info0ts.substring(8, 10) + ":" + info0ts.substring(10, 12));
+    $("#rain0").html(rain0falls[0]);
+    $("#rain1").html(rain0falls[1]);
+    $("#rain2").html(rain0falls[2]);
+    $("#rain3").html(rain0falls[3]);
+    $("#rain4").html(rain0falls[4]);
+    $("#rain5").html(rain0falls[5]);
+    $("#rain6").html(rain0falls[6]);
+
+    let mins0after = localStorage.getItem("mins0after");
+    if(mins0after === null) {} else {$("#mins0after").val(mins0after);}
+
+    function get0rainfall() {
+      for(let i = 6; i >= 0; i--) {
+        if($("#mins0after").val() == "直近測定値") {
+          $("#rain0vol").html(rain0falls[i] + "mm/h");
+        }
+        if(Number($("#mins0after").val().substring(0, 1)) == i) {
+          $("#rain0vol").html(rain0falls[i] + "mm/h");
+        }
+      }
+    }
+
+    get0rainfall();
+
+    $("#mins0after").on("change", function() {
+      localStorage.setItem("mins0after", $("#mins0after").val())
+      get0rainfall();
+    })
+    
+  });
+}
+
+//-----------------------------------------------------------------------------------------------------
+// 位置情報＋マップ
+//-----------------------------------------------------------------------------------------------------
+
+// Geo-----------------------------------------------------------------------------位置情報対応チェック
+function geo0check() {
+  if (!geo0obj) {
+    window.alert('ご利用のブラウザが位置情報に対応していないようで残念です...');
+    return;
+  }
+}
+
+// Geo-------------------------------------------------------------------------------第３引数オプション
+var geo0opt = {
+  maximumAge: 30000, //30秒有効期限
+  timeout: 30000, //30秒取得期限
+  enableHighAccuracy: true
+};
+
+// Geo---------------------------------------------------------------------------------第２引数失敗関数
+function geo0err(e) {
+  let e0msg = "";
+  if (e.code == 1) { //1＝位置情報取得が許可されてない（ブラウザの設定）
+    e0msg = "お手数ですが、許可設定をお願いします。 ";
+    // window.location.reload();
+  }
+  if (e.code == 2) { //2＝現在地を特定できない
+    e0msg = "現在位置を特定できないようです...";
+  }
+  if (e.code == 3) { //3＝位置情報を取得する前にタイムアウトになった場合
+    e0msg = "少しお時間がかかるようで、いったんキャンセルしますね。";
+  }
+  alert("位置情報取得：" + e0msg);
+};
+
+// Geo---------------------------------------------------------------------------------第１引数成功関数
+function geo0success (position) {
+  lat0lng = {lat: position.coords.latitude, lng: position.coords.longitude};
+  guest0latlng = {lat: position.coords.latitude, lng: position.coords.longitude};
+  // map0marker.setMap(null);
+  // map0marker = null;
+  document.getElementById("lat").textContent = Math.floor(lat0lng.lat * 100) / 100;
+  document.getElementById("lng").textContent = Math.floor(lat0lng.lng * 100) / 100;
+  post0guestgeo();
+  g0map = new google.maps.Map(map0html, {center: lat0lng, zoom: map0zoom, clickableIcons: false, disableDefaultUI: true});
+  map0marker = new google.maps.Marker({position: lat0lng, map: g0map, zIndex: 5,
+    icon: {url: "img/apple-touch-icon.png", scaledSize: new google.maps.Size(24, 24)}, optimized: false,
+    title: "ゲスト", animation: google.maps.Animation.DROP
+  });
+  map0marker.addListener("click", function(position) {
+    let iw = new google.maps.InfoWindow({
+      content: "ゲスト"
+    });
+    iw.open(g0map, map0marker);
+  });
+  // get0circle();
+// -----------------------------------------------------------------------------------------Click Arrow
+  g0map.addListener("click", function(position) {
+    // console.log(click0marker);
+    // 既存の矢印の存在チェック、なければダミーを作成
+    let is0empty = Object.keys(click0marker).length;
+    if(is0empty === 0) {
+      click0marker = new google.maps.Marker({
+        position: position.latLng, draggable: false, map: g0map,
+        icon: {path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW, scale: 2}
+      });
+    }
+    // マップとメモリから消す、新しい矢印を再表示
+    click0marker.setMap(null);
+    click0marker = {};
+    click0marker = new google.maps.Marker({
+        position: position.latLng, draggable: false, map: g0map,
+        icon: {path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW, scale: 2}
+    });
+    // html表示更新
+    clicked0latlng(position.latLng, map0html);
+    // html降水量更新
+    lng0lat = position.latLng.lng() + "," + position.latLng.lat(); 
+    y0rainfalls(lng0lat);
+    // LocalStorage保存用変数に代入
+    save0latlng = position.latLng
+  });
+
+// ----------------------------------------------------------------------------------------Click marker
+  map0marker.addListener('click', function(position) {
+    clicked0latlng(position.latLng, map0html);
+      lng0lat = position.latLng.lng() + "," + position.latLng.lat();
+      y0rainfalls(lng0lat);
+  });
+
+// ----------------------------------------------------------------------------------------------------
+  console.log("取得回数:" + (++times0watch));
+}
+
+// Geo---------------------------------------------------------------------------読み込み時位置情報取得
+// window.navigator.geolocation.getCurrentPosition(function(position) {
+//   lat0lng = {lat: position.coords.latitude, lng: position.coords.longitude};
+//   guest0latlng = {lat: position.coords.latitude, lng: position.coords.longitude};
+  // console.log(guest0latlng);
+//   g0map = new google.maps.Map(map0html, {center: lat0lng, zoom: map0zoom, clickableIcons: false, disableDefaultUI: true});
+//   map0marker = new google.maps.Marker({position: lat0lng, map: g0map, title: "ゲスト", animation: google.maps.Animation.DROP,
+//     icon: {url: 'img/apple-touch-icon.png', scaledSize: new google.maps.Size(24, 24)}, optimized: false
+//   });
+//   document.getElementById("lat").textContent = Math.floor(lat0lng.lat * 100) / 100;
+//   document.getElementById("lng").textContent = Math.floor(lat0lng.lng * 100) / 100;
+//   post0guestgeo();
+//  get0circle();
+// }, geo0err, geo0opt);
+
+// Map---------------------------------------------------------------------------------------Map Circle
+function get0circle() {
+  map0circle = new google.maps.Circle({
+    map: g0map,
+    center: lat0lng,
+    strokeColor: '#4986E8',
+    strokeOpacity: 0.5,
+    strokeWeight: 3,
+    fillColor: '#4986E8',
+    fillOpacity: 0.1,
+    draggable: true,
+    radius: 10  //半径1000メートル
+  });
+}
+
+// Map---------------------------------------------------------------------------------html経度緯度更新
+function clicked0latlng(latlng, map) {
+  document.getElementById("lat").textContent = Math.floor(latlng.lat() * 100) / 100;
+  document.getElementById("lng").textContent = Math.floor(latlng.lng() * 100) / 100;
+}
+
+// Map---------------------------------------------------------------------------------コールバック関数
+function init0map() {
+  geo0check();
+
+// ------------------------------------------------------------------------------------継続位置情報取得
+  window.navigator.geolocation.getCurrentPosition(geo0success, geo0err, geo0opt);
+  // var watch0id = window.navigator.geolocation.getCurrentPosition(geo0success, geo0err, geo0opt);
+  // geo0obj.clearWatch(watch0id);
+
+// ------------------------------------------------------------------------------------現在地にリセット
+  $("#back").on("click", function() {
+    g0map.panTo(map0marker.getPosition());
+    g0map.setZoom(map0zoom);
+    g0map.setCenter(map0marker.getPosition());
+    document.getElementById("lat").textContent = Math.floor(map0marker.getPosition().lat() * 100) / 100;
+    document.getElementById("lng").textContent = Math.floor(map0marker.getPosition().lng() * 100) / 100;
+    
+    let is0empty = Object.keys(click0marker).length;
+      if(is0empty === 0) {
+        click0marker = new google.maps.Marker({
+          position: lat0lng, draggable: false, map: g0map,
+          icon: {path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW, scale: 2}
+        });
+      }
+    click0marker.setMap(null);
+    click0marker = {};
+  })
+
+// ----------------------------------------------------------------------------------保存地点の表示処理
+  // 動的に追加した要素だとイベントハンドラが登録されないから
+  // $(document).on のようにウェブページ全体に対してイベントハンドラを登録します。
+  $(function() {
+    $(document).on("click", ".saved0spot", function () {
+      let spot0clicked =  $(this).data("id");
+      let spot0latlng = JSON.parse(localStorage.getItem(spot0clicked));
+
+      let is0empty = Object.keys(click0marker).length;
+      if(is0empty === 0) {
+        click0marker = new google.maps.Marker({
+          position: spot0latlng, draggable: false, map: g0map,
+          icon: {path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW, scale: 2}
+        });
+      }
+
+      click0marker.setMap(null);
+      click0marker = {};
+      click0marker = new google.maps.Marker({
+          position: spot0latlng, draggable: false, map: g0map,
+          icon: {path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW, scale: 2}
+      });
+
+      document.getElementById("lat").textContent = Math.floor(spot0latlng.lat * 100) / 100;
+      document.getElementById("lng").textContent = Math.floor(spot0latlng.lng * 100) / 100;
+              
+      g0map.panTo(click0marker.getPosition());
+      g0map.setZoom(map0zoom);
+      g0map.setCenter(click0marker.getPosition());
+          
+      lng0lat = spot0latlng.lng + "," + spot0latlng.lat;
+      y0rainfalls(lng0lat);
+    })
+  })
+  
+  setTimeout(plot0users, 5000);
+  setTimeout(plot0bizusers, 5000);
+  setTimeout(marker0iw, 8000);
+  setTimeout(bizmarker0iw, 8000);
+}
+
+//-----------------------------------------------------------------------------------------------------
+// 地点保存機能
+//-----------------------------------------------------------------------------------------------------
+$("#save").on("click", function() {
+  save0spot();
+});
+
+// --------------------------------------------------------------------------------------------Spot保存
+function save0spot() {
+  let ls0val = JSON.stringify(save0latlng);
+  
+  if(ls0val == "{}") {
+    alert("マップをクリックしてから登録をお願いします。");
+    return
+  }
+
+  let spot0name = window.prompt("登録名をご入力ください。")
+  let specify0q = window.confirm("経度緯度を指定しますか。")
+
+  if(specify0q) {
+    ls0val = ls0val.slice(1,-1);
+    let specify0spot = window.prompt('指定形式で位置をご入力ください。', ls0val);
+    ls0val = "{" + specify0spot + "}";
+  }
+  
+  if(spot0name == "" || spot0name == null) {
+    return
+  }
+
+  if(spot0name.length > 10) {
+    alert("30文字以内でお願いします。");
+    return
+  }
+
+  const ls0key = "spot" + spot0name;
+  localStorage.setItem(ls0key, ls0val);
+
+  const spot0list = '<tr><td data-id="' + ls0key + '" style="text-align: left;">' + ls0key.slice(4) + "</td><td>" + '<button class="saved0spot" style="color: #ffd61a; background-color: silver; width: 60px; border-radius: 5px; font-weight: bold; cursor: pointer; text-align:center;" data-id="' + ls0key + '" ' + '>マップ</button></td><td><button class="rmvbtn" style="color: white; background-color: silver; width: 60px;  font-weight: bold; cursor: pointer; text-align:center;" data-id="' + ls0key + '" ' + '>クリア</button></td></tr>';
+
+  refresh0data();
+}
+
+// ------------------------------------------------------------------------------------------リスト更新
+function refresh0data() {
+  $("#list").empty();
+  for(let i = 0; i < localStorage.length; i++) {
+    const ls0key = localStorage.key(i);
+    const ls0val = localStorage.getItem(ls0key);
+
+    if(ls0key.substring(0, 4) == "spot") {
+      const spot0list = '<tr><td data-id="' + ls0key + '" style="text-align: left;">' + ls0key.slice(4) + "</td><td>" + '<button class="saved0spot" style="color: #ffd61a; background-color: silver; width: 60px; border-radius: 5px; font-weight: bold; cursor: pointer; text-align:center;" data-id="' + ls0key + '" ' + '>マップ</button></td><td><button class="rmvbtn" style="color: white; background-color: silver; width: 60px;  font-weight: bold; cursor: pointer; text-align:center;" data-id="' + ls0key + '" ' + '>クリア</button></td></tr>';
+      
+      $("#list").append(spot0list);
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------------ロード時リスト表示
+refresh0data();
+
+// --------------------------------------------------------------------------------------------Spot削除
+$(function() {
+  $(document).on("click", ".rmvbtn", function () {
+    var clicked =  $(this).data('id');
+    localStorage.removeItem(clicked);
+    refresh0data();
+  })
+})
+
+//-----------------------------------------------------------------------------------------------------
+// Firebase設定
+//-----------------------------------------------------------------------------------------------------
+const firebaseConfig = {
+  apiKey: "AIzaSyBvSTm4WpfcTTGFvsRMyfuEt71rO1o_RmE",
+  authDomain: "chat-6a5e6.firebaseapp.com",
+  databaseURL: "https://chat-6a5e6.firebaseio.com",
+  projectId: "chat-6a5e6",
+  storageBucket: "chat-6a5e6.appspot.com",
+  messagingSenderId: "289943564537",
+  appId: "1:289943564537:web:4dfb9a9be5facbd59d7228"
+};
+firebase.initializeApp(firebaseConfig);
+
+const newPostRef = firebase.database();
+const newPostRefall = firebase.database().ref("needslist");
+
+// ------------------------------------------------------------------------------------------Postゲスト
+function post0guestgeo() {
+  let guest0coord = JSON.stringify(guest0latlng);
+  let guest0coord1 = JSON.stringify(guest0latlng);
+  guest0coord = guest0coord.slice(1, -1);
+  guest0coord = guest0coord.replace(/"/g, "");
+  guest0coord = guest0coord.replace(",", "");
+  guest0coord = guest0coord.replace(".", "-");
+  guest0coord = guest0coord.replace(":", "x");
+  guest0coord = guest0coord.replace(":", "x");
+  guest0coord = guest0coord.replace(".", "-");
+
+  guest0coord = guest0coord.replace(/"/g, "");
+
+  data0ts = ymds();
+  newPostRef.ref("/" + "guestpositions" + "/" + data0ts).set({
+    position: guest0latlng,
+    timestamp: data0ts
+  }); 
+
+  newPostRef.ref("/" + "guestpositions" + "/" + guest0coord).set({
+    timestamp: data0ts
+  }); 
+}
+
+//-----------------------------------------------------------------------------------------------------
+// Firebaseより各ユーザー最終位置取得
+//-----------------------------------------------------------------------------------------------------
+newPostRef.ref("/" + "userposition").on("value", function(data) {
+  users0geo = data.val();
+  // console.log(users0geo);
+});
+
+//-----------------------------------------------------------------------------------------------------
+// Firebase needslist
+//-----------------------------------------------------------------------------------------------------
+let str = "";
+  newPostRefall.on("child_added", function(data) {
+    let d = data.val();
+    let k = data.key;
+    
+    str = '<tr><td class="our0needs" data-id="" style="text-align: left; max-width: 40px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; cursor: pointer;">' + d.givetake + '</td><td class="our0needs" data-id="" style="text-align: left; max-width: 50px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; cursor: pointer;">' + d.category + '</td><td class="our0needs" data-id="" style="text-align: left; max-width: 240px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; cursor: pointer;">' + d.detail + '</td></tr>'
+  
+    $("#needs0table").prepend(str);
+    // $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+  })
+
+//-----------------------------------------------------------------------------------------------------
+// ユーザー位置をマップに表示関数
+//-----------------------------------------------------------------------------------------------------
+function plot0users() {
+  let i = 1;
+  for(let user in users0geo) {
+    user0rooms[i] = users0geo[user].room;
+    user0positions[i] = users0geo[user].position;
+    user0names[i] = users0geo[user].displayname;
+    
+    user0markers[i] = new google.maps.Marker({
+      map: g0map, position: user0positions[i], title: user0names[i], zIndex: 1,
+      icon: {url: 'img/auneeds-white-s.png', scaledSize: new google.maps.Size(24, 24)}, optimized: false 
+    });
+
+    user0contents[i] = '<div style="text-align: center;">' + user0names[i] + '</div><button class="iw0tenki" id="' + user0rooms[i] + '" style="background: silver; color: white; border-radius: 5px; font-weight: bold; margin-right: 5px; cursor: pointer;">天気混雑</button><button class="iw0needs" style="background: silver; color: white; border-radius: 5px; font-weight: bold; cursor: pointer;">ニーズ</button>';
+
+    iws[i] = new google.maps.InfoWindow({
+      // position: new google.maps.LatLng(user0positions[i]),
+      content: user0contents[i]
+    });
+
+    // console.log(user0markers.length);
+    i = i + 1; 
+  }
+}
+
+//-----------------------------------------------------------------------------------------------------
+// bizユーザー位置をマップに表示関数
+//-----------------------------------------------------------------------------------------------------
+let bizuser0markers = [];
+let bizuser0contents = [];
+let biz0iws = [];
+let bizuser0rooms = []
+function plot0bizusers() {
+  $.ajax({
+    type: "POST",
+    url: "biz0plot.php",
+    data: {},
+    dataType: "json",
+    success: function(data) {
+      console.log(data);
+      for(let i = 0; i < data.length - 1; i++) {
+        bizuser0rooms[i] = "a" + data[i].token;
+        bizuser0markers[i] = new google.maps.Marker({
+          map: g0map, 
+          position: {lat: Number(data[i].lat), lng: Number(data[i].lng)}, 
+          title: data[i].displayname, 
+          zIndex: 2,
+          icon: {url: 'img/auneeds-biz.png', scaledSize: new google.maps.Size(24, 24)}, optimized: false 
+        });
+        bizuser0contents[i] = '<a href="' + data[i].bizurl + '"target=" _blank" style="text-align: center;">' + data[i].displayname + '</a><br><button class="iw0tenki" id="a' + data[i].token + '" style="background: silver; color: white; border-radius: 5px; font-weight: bold; margin-right: 5px; cursor: pointer;">天気混雑</button>';
+        // <button class="iw0needs" style="background: silver; color: white; border-radius: 5px; font-weight: bold; cursor: pointer;">ニーズ</button>
+
+        biz0iws[i] = new google.maps.InfoWindow({
+          content: bizuser0contents[i]
+        });
+        // map0circle = new google.maps.Circle({
+        //   map: g0map,
+        //   center: {lat: Number(data[i].lat), lng: Number(data[i].lng)}, 
+        //   strokeColor: '#4986E8',
+        //   strokeOpacity: 0.5,
+        //   strokeWeight: 3,
+        //   fillColor: '#4986E8',
+        //   fillOpacity: 0.1,
+        //   draggable: false,
+        //   radius: Number(data[i].radius)
+        // })
+      }
+    }
+  });
+}
+
+function bizmarker0iw() {
+  for(let i = 0; i < bizuser0markers.length; i++) {
+    bizuser0markers[i].addListener("click", function(position) {
+      biz0iws[i].open(g0map, bizuser0markers[i]);
+      
+      clicked0latlng(position.latLng, map0html);
+      
+      let lng0lat = position.latLng.lng() + "," + position.latLng.lat();
+      y0rainfalls(lng0lat);
+    
+      google.maps.event.addListener(biz0iws[i], "domready", function() {
+        let room0id = "#" + bizuser0rooms[i];
+        let tenki0btn = document.querySelector(room0id);
+        google.maps.event.addDomListener(tenki0btn, "click", function() {
+          // $("#close0tenki0now").click();
+          $("#tenki0now").show();
+//------------------------------------------------------------------------------------------------送信
+          // let option0now = "";
+          // $("#option0now").show();
+          // $("#option0sora").on("click", function(){
+          //   option0now = "てんき";
+          //   $("#option0now").hide();
+          // })
+          // $("#option0busy").on("click", function(){
+          //   option0now = "混雑";
+          //   $("#option0now").hide();
+          // })
+          // $("#option0condi").on("click", function(){
+          //   option0now = "コンディション";
+          //   $("#option0now").hide();
+          // })
+          // $("#option0wind").on("click", function(){
+          //   option0now = "風";
+          //   $("#option0now").hide();
+          // })
+          
+          let option0now = $("#tenki0text").val();
+          console.log($("#tenki0text").val());
+
+          newPostRef.ref("/" + "usertenki" + "/" + bizuser0rooms[i]).update({
+            guest: option0now + "now?",
+            guest0ts: ymd()
+          }); 
+          
+//------------------------------------------------------------------------------------------------受信
+          newPostRef.ref("/" + "usertenki" + "/" + bizuser0rooms[i]).on("value", function(data) {
+            $("#output").empty();
+            let d = data.val();
+            console.log(d);
+            let chat0bx = "";
+            if(!d.guest == "") {
+              // $("#output").empty();
+              chat0bx =  '<div class="chat-hukidashi">' + d.guest + '<div style="position: absolute; top: -14px; right: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.guest0ts + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;"></div></div>';
+            
+            $("#output").append(chat0bx);
+            $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            }
+            if(!d.rain == "") {
+              // $("#output").empty();
+              chat0bx = '<div class="chat-hukidashi someone">' + d.rain + '<div style="position: absolute; top: -14px; left: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.timestamp + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;">' + d.displayname + '</div></div>';
+              $("#output").append(chat0bx);
+              $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            } 
+            if(!d.wind == "") {
+              // $("#output").empty();
+              chat0bx = '<div class="chat-hukidashi someone">' + d.wind + '<div style="position: absolute; top: -14px; left: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.timestamp + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;">' + d.displayname + '</div></div>';
+              $("#output").append(chat0bx);
+              $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            } 
+            if(!d.condition == "") {
+              // $("#output").empty();
+              chat0bx = '<div class="chat-hukidashi someone">' + d.condition + '<div style="position: absolute; top: -14px; left: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.timestamp + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;">' + d.displayname + '</div></div>';
+              $("#output").append(chat0bx);
+              $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            } 
+            if(!d.busy == "") {
+              // $("#output").empty();
+              chat0bx = '<div class="chat-hukidashi someone">' + d.busy + '<div style="position: absolute; top: -14px; left: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.timestamp + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;">' + d.displayname + '</div></div>';
+              $("#output").append(chat0bx);
+              $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            } 
+            if(!d.other == "") {
+              // $("#output").empty();
+              chat0bx = '<div class="chat-hukidashi someone">' + d.other + '<div style="position: absolute; top: -14px; left: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.timestamp + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;">' + d.displayname + '</div></div>';
+              $("#output").append(chat0bx);
+              $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            } 
+            if(!d.comment == "") {
+              // $("#output").empty();
+              chat0bx = '<div class="chat-hukidashi someone">' + d.comment + '<div style="position: absolute; top: -14px; left: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.timestamp + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;">' + d.displayname + '</div></div>';
+              $("#output").append(chat0bx);
+              $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            } 
+          });
+        });
+      });
+    });
+  }
+}
+
+
+//-----------------------------------------------------------------------------------------------------
+// InfoWindowのイベント関数
+// ----------------------------------------------------------------------------------------------------
+function marker0iw() {   
+
+  for(let i = 1; i < user0markers.length; i++) {
+    user0markers[i].addListener("click", function(position) {
+      iws[i].open(g0map, user0markers[i]);
+      
+      clicked0latlng(position.latLng, map0html);
+      
+      let lng0lat = position.latLng.lng() + "," + position.latLng.lat();
+      y0rainfalls(lng0lat);
+    
+      google.maps.event.addListener(iws[i], "domready", function() {
+        let needs0btn = document.querySelector(".iw0needs");
+        google.maps.event.addDomListener(needs0btn, "click", function() {
+          $('.js-modal').fadeIn();
+        });
+
+        let room0id = "#" + user0rooms[i]
+        let tenki0btn = document.querySelector(room0id);
+        google.maps.event.addDomListener(tenki0btn, "click", function() {
+          $("#tenki0now").show();
+
+//------------------------------------------------------------------------------------------------送信        
+          let option0now = $("#tenki0text").val();
+          console.log($("#tenki0text").val());
+
+          newPostRef.ref("/" + "usertenki" + "/" + user0rooms[i]).update({
+            guest: option0now + "now?",
+            guest0ts: ymd()
+          });
+          
+//------------------------------------------------------------------------------------------------受信
+          newPostRef.ref("/" + "usertenki" + "/" + user0rooms[i]).on("value", function(data) {
+            $("#output").empty();
+            let d = data.val();
+            console.log(d);
+            let chat0bx = "";
+            if(!d.guest == "") {
+              // $("#output").empty();
+              chat0bx =  '<div class="chat-hukidashi">' + d.guest + '<div style="position: absolute; top: -14px; right: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.guest0ts + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;"></div></div>';
+            
+            $("#output").append(chat0bx);
+            $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            }
+            if(!d.rain == "") {
+              // $("#output").empty();
+              chat0bx = '<div class="chat-hukidashi someone">' + d.rain + '<div style="position: absolute; top: -14px; left: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.timestamp + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;">' + d.displayname + '</div></div>';
+              $("#output").append(chat0bx);
+              $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            } 
+            if(!d.wind == "") {
+              // $("#output").empty();
+              chat0bx = '<div class="chat-hukidashi someone">' + d.wind + '<div style="position: absolute; top: -14px; left: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.timestamp + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;">' + d.displayname + '</div></div>';
+              $("#output").append(chat0bx);
+              $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            } 
+            if(!d.condition == "") {
+              // $("#output").empty();
+              chat0bx = '<div class="chat-hukidashi someone">' + d.condition + '<div style="position: absolute; top: -14px; left: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.timestamp + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;">' + d.displayname + '</div></div>';
+              $("#output").append(chat0bx);
+              $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            } 
+            if(!d.busy == "") {
+              // $("#output").empty();
+              chat0bx = '<div class="chat-hukidashi someone">' + d.busy + '<div style="position: absolute; top: -14px; left: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.timestamp + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;">' + d.displayname + '</div></div>';
+              $("#output").append(chat0bx);
+              $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            } 
+            if(!d.other == "") {
+              // $("#output").empty();
+              chat0bx = '<div class="chat-hukidashi someone">' + d.other + '<div style="position: absolute; top: -14px; left: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.timestamp + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;">' + d.displayname + '</div></div>';
+              $("#output").append(chat0bx);
+              $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            } 
+            if(!d.comment == "") {
+              // $("#output").empty();
+              chat0bx = '<div class="chat-hukidashi someone">' + d.comment + '<div style="position: absolute; top: -14px; left: -30px; width: 80px; font-size: 12px; transform:scale(0.5); color: black;">' + d.timestamp + '</div>' + '<div style="position: absolute; top: -14px; left: 5px; width: 140px; font-size: 12px; transform:scale(0.6); color: #4986E8;">' + d.displayname + '</div></div>';
+              $("#output").append(chat0bx);
+              $('#output').animate({scrollTop: $('#output')[0].scrollHeight}, 0);
+            } 
+          });
+        });
+      });
+    });
+  }
+}
+
+
+
+</script>
+</div>
+</body>
