@@ -4,10 +4,32 @@
   <title>プロンタイプ</title>
   <meta charset="utf-8">
   <meta name="description" content="プロンタイプ Prontype">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="icon" href="favicon.ico">
+
+
+  <link rel="alternate" hreflang="en" href="https://mapapi.org/">
+  <link rel="alternate" hreflang="ja" href="https://mapapi.org/">
+  <!-- 120文字以内、coteditorで文字数チェックできる -->
+  <meta name=description content="We prepare samples to make  BingMapsAPI easier to use Beginners. We will continue to increase the number of samples in the future. ">
+  <!-- 検索キーワード、サイト内文章少なければ90文字以上入れる -->
+  <meta name=keywords content="Mapapi, Bing Map, Bing, Map, GO, map api, JavaScript, API, 使い方, 方法, web, development, template, sample, microsoft map">
+  <!-- 誰が作った -->
+  <meta name="author" content="datankia">
+  <!-- サファリのヘッダー -->
+  <meta name="theme-color" content="#F8F7F8">
+  <!-- ogはfacebookなどシェアされるときの情報 -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mapapi.org/">
+  <meta property="og:description" content="We prepare samples to make BingMapsAPI easier to use Beginners. We will continue to increase the number of samples in the future. ">
+  <meta property="og:title" content="BingMaps GO!">
+  <meta property="og:image" content="https://mapapi.org/main1.png">
+  <meta property="og:image" content="http://mapapi.org/main1.png">
+
 </head>
+
+<script><?php include("js/jquery-3.4.1.min.js");?></script>
 
 <style>
 
@@ -29,16 +51,16 @@
   <table style="width: 700px; margin: 0 auto; border: 1px solid rgba(21, 42, 163, 0.3); border-radius: 10px; box-shadow: 0 5px 5px rgb(219, 219, 219); overflow: hidden; margin-top: 30px;">
     <tr>
       <td style="width: 18%; background:navy; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 100px;">概要</td>
-      <td colspan="2" style="background: navy; color: white; height: 40px; width: 64%; vertical-align: middle;"><input id="portf0desc" type="text" placeholder="例：マップ位置情報取得機能" style="width: 100%; border-radius: 5px;"></td>
+      <td colspan="2" style="background: navy; color: white; height: 40px; width: 82%; vertical-align: middle;"><input id="portf0desc" type="text" placeholder="例：マップ位置情報取得機能" style="width: 100%; border-radius: 5px;"></td>
     </tr>
     <tr>
       <td style="width: 18%; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">主な機能</td><td style="min-height: 60px; width: 18%; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;"><button style="color: royalblue; background-color: silver; width: 60px; border-radius: 5px; font-weight: bold; cursor: pointer; text-align:center; padding: 0; border: 0;">画像添付</button></td><td style="height: 40px; width: 64%; vertical-align: middle;"><input  id="portf0func" type="text" placeholder="例：マップ位置情報取得機能" style="width: 100%; border-radius: 5px;"></td>
     </tr>
     <tr>
-      <td style="width: 60px; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">使用技術</td><td style="min-height: 60px; width: 120px; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;"><button style="color: royalblue; background-color: silver; width: 60px; border-radius: 5px; font-weight: bold; cursor: pointer; text-align:center; padding: 0; border: 0;">画像添付</button></td><td style="height: 40px; width: 500px; vertical-align: middle;"><input  id="portf0tech" type="text" placeholder="例：Google Map API、Javascript" style="width: 100%; border-radius: 5px;"></td>
+      <td style="width: 18%; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">使用技術</td><td style="min-height: 60px; width: 18%; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;"><button style="color: royalblue; background-color: silver; width: 60px; border-radius: 5px; font-weight: bold; cursor: pointer; text-align:center; padding: 0; border: 0;">画像添付</button></td><td style="height: 40px; width: 64%; vertical-align: middle;"><input  id="portf0tech" type="text" placeholder="例：Google Map API、Javascript" style="width: 100%; border-radius: 5px;"></td>
     </tr>
     <tr>
-      <td style="width: 60px; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">デモURL</td><td style="min-height: 60px; width: 120px; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;"><button style="color: royalblue; background-color: silver; width: 60px; border-radius: 5px; font-weight: bold; cursor: pointer; text-align:center; padding: 0; border: 0;">画像添付</button></td><td style="height: 40px; width: 500px; vertical-align: middle;"><input id="portf0url" type="text" placeholder="例：https://auneeds.com" style="width: 100%; border-radius: 5px;"></td>
+      <td style="width: 18%; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">デモURL</td><td style="min-height: 60px; width: 18%; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;"><button style="color: royalblue; background-color: silver; width: 60px; border-radius: 5px; font-weight: bold; cursor: pointer; text-align:center; padding: 0; border: 0;">画像添付</button></td><td style="height: 40px; width: 64%; vertical-align: middle;"><input id="portf0url" type="text" placeholder="例：https://auneeds.com" style="width: 100%; border-radius: 5px;"></td>
     </tr>
   </table>
 
@@ -49,16 +71,16 @@
 
   <table style="width: 700px; margin: 0 auto; border: 1px solid rgba(21, 42, 163, 0.3); border-radius: 10px; box-shadow: 0 5px 5px rgb(219, 219, 219); overflow: hidden; margin-top: 30px;">
     <tr>
-      <td style="width: 18%; background:navy; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 100px;">概要</td><td colspan="2" style="background:navy; color: white; height: 40px; width: 64%; vertical-align: middle;">マップ表示、位置情報取得、カスタマイズ地図アイコン</td>
+      <td style="width: 18%; background:navy; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 100px;">概要</td><td colspan="2" style="background:navy; color: white; height: 40px; width: 82%; vertical-align: middle;">マップ表示、位置情報取得、カスタマイズ地図アイコン</td>
     </tr>
     <tr>
       <td style="width: 18%; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">主な機能</td><td style="min-height: 60px; width: 18%; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="img0portf/map.png" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;">マップ機能</td><td style="height: 40px; width: 64%; vertical-align: middle;">マップ表示、位置情報取得、カスタマイズ地図アイコン</td>
     </tr>
     <tr>
-      <td style="width: 60px; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">使用技術</td><td style="min-height: 60px; width: 120px; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="img0portf/geo.png" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;">位置情報</td><td style="height: 40px; width: 500px; vertical-align: middle;">Google Map API、Javascript、HTML、CSS</td>
+      <td style="width: 18%; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">使用技術</td><td style="min-height: 60px; width: 18%; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="img0portf/geo.png" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;">位置情報</td><td style="height: 40px; width: 64%; vertical-align: middle;">Google Map API、Javascript、HTML、CSS</td>
     </tr>
     <tr>
-      <td style="width: 60px; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">デモURL</td><td style="min-height: 60px; width: 120px; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="img0portf/icon.png" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;">アイコン</td><td style="height: 40px; width: 500px; vertical-align: middle;"><a href="https://auneeds.com" style="cursor: pointer; text-decoration: underline; color: blue;">https://auneeds.com</a></td>
+      <td style="width: 18%; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">デモURL</td><td style="min-height: 60px; width: 18%; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="img0portf/icon.png" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;">アイコン</td><td style="height: 40px; width: 64%; vertical-align: middle;"><a href="https://auneeds.com" style="cursor: pointer; text-decoration: underline; color: blue;">https://auneeds.com</a></td>
     </tr>
   </table>
 
@@ -74,7 +96,7 @@
   &copy; Prontype All RIghts Reserved.
 </footer>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->
 <script>
 
 let portf0all= "";
@@ -101,7 +123,7 @@ let portf0all= "";
         if(data[i].portf0desc == null) {
           console.log("here");
         }
-       portf0all += '<table style="width: 700px; margin: 0 auto; border: 1px solid rgba(21, 42, 163, 0.3); border-radius: 10px; box-shadow: 0 5px 5px rgb(219, 219, 219); overflow: hidden; margin-top: 30px;"><tr><td style="width: 18%; background:navy; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 100px;">概要</td><td colspan="2" style="background:navy; color: white; height: 40px; width: 64%; vertical-align: middle;">' + data[i].portf0desc + '</td></tr><tr><td style="width: 18%; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">主な機能</td><td style="min-height: 60px; width: 18%; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="' + data[i].portf1img + '" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;">マップ機能</td><td style="height: 40px; width: 64%; vertical-align: middle;">' + data[i].portf0func + '</td></tr><tr><td style="width: 60px; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">使用技術</td><td style="min-height: 60px; width: 120px; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="' + data[i].portf2img + '" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;">位置情報</td><td style="height: 40px; width: 500px; vertical-align: middle;">' + data[i].portf0tech + '</td></tr><tr><td style="width: 60px; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">デモURL</td><td style="min-height: 60px; width: 120px; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="' + data[i].portf3img + '" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;">アイコン</td><td style="height: 40px; width: 500px; vertical-align: middle;"><a href="' + data[i].portf0url + '" target="_blank" style="cursor: pointer; text-decoration: underline; color: blue;">' + data[i].portf0url + '</a></td></tr></table>'
+       portf0all += '<table style="width: 700px; margin: 0 auto; border: 1px solid rgba(21, 42, 163, 0.3); border-radius: 10px; box-shadow: 0 5px 5px rgb(219, 219, 219); overflow: hidden; margin-top: 30px;"><tr><td style="width: 18%; background:navy; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 100px;">概要</td><td colspan="2" style="background:navy; color: white; height: 40px; width: 82%; vertical-align: middle;">' + data[i].portf0desc + '</td></tr><tr><td style="width: 18%; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">主な機能</td><td style="min-height: 60px; width: 18%; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="' + data[i].portf1img + '" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;">マップ機能</td><td style="height: 40px; width: 64%; vertical-align: middle;">' + data[i].portf0func + '</td></tr><tr><td style="width: 18%; background:darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">使用技術</td><td style="min-height: 60px; width: 18%; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="' + data[i].portf2img + '" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;">位置情報</td><td style="height: 40px; width: 64%; vertical-align: middle;">' + data[i].portf0tech + '</td></tr><tr><td style="width: 18%; background: darkred; color: white; vertical-align: middle; padding: 0px 30px; text-align: center; height: 150px;">デモURL</td><td style="min-height: 60px; width: 18%; background-color: rgb(29, 112, 29); text-align: center; color: white;"><img src="' + data[i].portf3img + '" alt="画像なし" style="width: 100%; min-height: 60px; object-fit: contain;">アイコン</td><td style="height: 40px; width: 64%; vertical-align: middle;"><a href="' + data[i].portf0url + '" target="_blank" style="cursor: pointer; text-decoration: underline; color: blue;">' + data[i].portf0url + '</a></td></tr></table>';
 
         // if(data[i].fname == null && data[i].offer == 0) {
         //   portf0all += '<tr><td class="rmvbtn"><button style="color: white; background-color: silver; width: 30px;  font-weight: bold; cursor: pointer; text-align:center; font-size: 14px; padding: 0;" data-id=""><a href="needs0delete.php?id=' + data[i].id + '" style="text-decoration: none; color: white;">✖︎</a></button></td><td class="my0need" data-id=a' + user0hash + data[i].id + ' style="text-align: left; max-width: 40px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; cursor: pointer;">' + data[i].givetake + '</td><td class="my0need" data-id=a' + user0hash + data[i].id + '  style="text-align: left; max-width: 50px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; cursor: pointer;">' + data[i].category + '</td><td class="my0need" data-id=a' + user0hash + data[i].id + ' style="text-align: left; max-width: 130px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; cursor: pointer;">' + data[i].detail + '</td><td class="img0btn" data-id=' + data[i].id + '><button style="color: #ffd61a; background-color: silver; width: 30px; border-radius: 5px; font-weight: bold; cursor: pointer; text-align:center; padding: 0; border: 0;" data-id=' + data[i].id + ' data-fname="./needsimg/' + data[i].fname + '"></button></td></tr>';
@@ -262,5 +284,6 @@ $("#btn0regis").on("click", function() {
 // });
 
 </script>
+
 </body>
 </html>
